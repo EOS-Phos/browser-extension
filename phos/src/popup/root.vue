@@ -1,31 +1,49 @@
 <template>
-  <el-form ref="form" :model="formInline" class="demo-form-inline">
-  <img src="../../static/icons/logo.png" class="image">
-  <el-form-item>
-  <el-input v-model="formInline.password" placeholder="Password"></el-input>
-  </el-form-item>
-
-  <el-form-item>
-  <el-button type="primary" @click="onSubmit">Login</el-button>
-  </el-form-item>
-  
-  </el-form>
-  
+  <el-container class="demo-form-inline">
+  <el-main>
+    <img src="../../static/icons/eos-logo.png" class="image" />
+    <el-row :gutter="10" type="flex">
+  <el-col :offset="3" ><el-input class="password" type="password" v-model="ruleForm2.pass" auto-complete="off"></el-input></el-col>
+</el-row>
+<el-row :gutter="10" type="flex">
+  <el-col :offset="3" ><el-button justify="center" class="btnSubmit" @click="onSubmit">Login</el-button></el-col>
+</el-row>
+  </el-main>
+  <el-footer>
+    <footer>Powered by</footer>
+  </el-footer>
+</el-container>
 </template>
 <script>
+var forge = require("node-forge");
+var rsa = forge.pki.rsa;
+
+function getLocalKeyPair() {
+  if (localStorage["publicKey"] == null) {
+    console.log("Generating local keypair...");
+    rsa.generateKeyPair({ bits: 2048, workers: 2 }, function(err, keypair) {
+      localStorage["publicKey"] = forge.pki.publicKeyToPem(keypair.publicKey);
+      console.log("Local keypair generated");
+    });
+  }
+}
+function getWallet() {
+  console.log("Generating wallet...");
+}
+
 export default {
   data() {
-      return {
-        formInline: {
-          user: '',
-          password: ''
-        }
+    return {
+      ruleForm2: {
+        pass: ""
       }
-    },
+    };
+  },
   methods: {
-  onSubmit() {
-        console.log('submit!');
-      },
+    onSubmit() {
+      getLocalKeyPair();
+      getWallet();
+    },
     tab() {
       chrome.tabs.create({ url: "pages/app.html" });
     }
@@ -34,13 +52,26 @@ export default {
 </script>
 <style lang="scss">
 .demo-form-inline {
-  width: 400px;
+  width: 300px;
   height: 500px;
 }
 .image {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+.btnSubmit {
+  width: 80%;
+  margin-top: 5px;
+}
+
+.password {
+  margin-top: 200px;
+  width: 80%;
+}
+
+.poweredBy {
+  height: 60;
 }
 </style>
