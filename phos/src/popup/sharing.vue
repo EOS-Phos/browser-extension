@@ -1,33 +1,37 @@
 <template>
-  <div>
-    <h2>Login</h2>
-    <p v-if="$route.query.redirect">
-      You need to login first.
-    </p>
-  </div>
+ <el-upload
+  class="upload-demo"
+  drag
+  action="https://jsonplaceholder.typicode.com/posts/"
+  :on-preview="handlePreview"
+  :on-remove="handleRemove"
+  :file-list="fileList"
+  multiple>
+  <i class="el-icon-upload"></i>
+  <div class="el-upload__text">Drop file here or <em>click to upload</em></div>
+  <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 500kb</div>
+</el-upload>
 </template>
 
 <script>
-console.log('LOGIN')
+console.log("D3EP Share...");
 
 export default {
   data() {
     return {
-      email: "joe@example.com",
-      pass: "",
-      error: false
+      fileList: []
     };
   },
   methods: {
-    login() {
-      this.$router.replace(this.$route.query.redirect || "/");
-    }
+    handlePreview() {},
+    handleRemove() {}
   }
 };
 </script>
 
 <style>
-.error {
-  color: red;
+.upload-demo{
+  width: 200px;
+  height: 200px;
 }
 </style>
