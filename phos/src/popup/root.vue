@@ -23,6 +23,7 @@ function getLocalKeyPair() {
     console.log("Generating local keypair...");
     rsa.generateKeyPair({ bits: 2048, workers: 2 }, function(err, keypair) {
       localStorage["publicKey"] = forge.pki.publicKeyToPem(keypair.publicKey);
+      localStorage["privateKey"] = forge.pki.privateKeyToPem(keypair.privateKey);
       console.log("Local keypair generated");
     });
   }
