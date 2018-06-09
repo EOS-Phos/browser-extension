@@ -2,11 +2,14 @@
   <el-tabs class="main-tab" v-model="activeName" @tab-click="handleClick">
     <el-tab-pane label="User" name="first">User</el-tab-pane>
     <el-tab-pane label="Config" name="second">Config</el-tab-pane>
+    {{example}}
   </el-tabs>
 </template>
 <script>
 export default {
-  data: () => ({}),
+  data: () => ({
+    example: "hi"
+  }),
   computed: {},
   created() {
     console.log("New tab");
@@ -29,18 +32,3 @@ div {
   height: 500px;
 }
 </style>
-
-<script>
-  export default {
-    data() {
-      return {
-        activeName: 'first'
-      };
-    },
-    methods: {
-      handleClick(tab, event) {
-        console.log(tab, event);
-      }
-    }
-  };
-</script>

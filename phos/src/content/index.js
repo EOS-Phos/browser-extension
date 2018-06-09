@@ -12,6 +12,7 @@ function loadImage(containerObject, urlCode) {
     figcaption.textContent = containerObject.innerText
     figure.appendChild(img)
     figure.appendChild(figcaption)
+    containerObject.empty()
     containerObject.appendChild(figure)
 }
 
