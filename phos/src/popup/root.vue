@@ -1,16 +1,16 @@
 <template>
   <el-container class="demo-form-inline">
   <el-main>
-    <img src="../../static/icons/eos-logo.png" class="image" />
+    <img src="../../static/icons/d3ep.png" class="image" />
     <el-row :gutter="10" type="flex">
-  <el-col :offset="3" ><el-input class="password" type="password" v-model="ruleForm2.pass" auto-complete="off"></el-input></el-col>
+  <el-col ><el-input class="password" type="password" v-model="ruleForm2.pass" auto-complete="off"></el-input></el-col>
 </el-row>
 <el-row :gutter="10" type="flex">
-  <el-col :offset="3" ><el-button justify="center" class="btnSubmit" @click="onSubmit">Login</el-button></el-col>
+  <el-col ><el-button justify="center" class="btnSubmit" @click="onSubmit">Login</el-button></el-col>
 </el-row>
   </el-main>
   <el-footer>
-    <footer>Powered by</footer>
+    <h4>Powered by</h4>
   </el-footer>
 </el-container>
 </template>
@@ -62,13 +62,19 @@ export default {
   width: 50%;
 }
 .btnSubmit {
-  width: 80%;
+  width: 100%;
   margin-top: 5px;
 }
 
 .password {
-  margin-top: 200px;
-  width: 80%;
+  margin-top:80px;
+  width: 100%;
+}
+
+.welcome-text {
+  text-align: center;
+  font-weight: 300;
+  color: lightskyblue;
 }
 
 .poweredBy {
