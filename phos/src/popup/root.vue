@@ -1,21 +1,31 @@
 <template>
-  <el-tabs class="main-tab" v-model="activeName" @tab-click="handleClick">
-    <el-tab-pane label="User" name="first">User</el-tab-pane>
-    <el-tab-pane label="Config" name="second">Config</el-tab-pane>
-    {{example}}
-  </el-tabs>
+  <el-form ref="form" :model="formInline" class="demo-form-inline">
+  <img src="../../static/icons/logo.png" class="image">
+  <el-form-item>
+  <el-input v-model="formInline.password" placeholder="Password"></el-input>
+  </el-form-item>
+
+  <el-form-item>
+  <el-button type="primary" @click="onSubmit">Login</el-button>
+  </el-form-item>
+  
+  </el-form>
+  
 </template>
 <script>
 export default {
-  data: () => ({
-    example: "hi"
-  }),
-  computed: {},
-  created() {
-    console.log("New tab");
-  },
-  mounted() {},
+  data() {
+      return {
+        formInline: {
+          user: '',
+          password: ''
+        }
+      }
+    },
   methods: {
+  onSubmit() {
+        console.log('submit!');
+      },
     tab() {
       chrome.tabs.create({ url: "pages/app.html" });
     }
@@ -23,12 +33,14 @@ export default {
 };
 </script>
 <style lang="scss">
-div {
-  color: blue;
-}
-
-.main-tab {
-  width: 300px;
+.demo-form-inline {
+  width: 400px;
   height: 500px;
+}
+.image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
 }
 </style>
