@@ -1,7 +1,9 @@
 <template>
 <div>
-  <el-container v-show="getShowLogin()" class="demo-form-inline">
+  <el-container class="demo-form-inline">
+      
   <el-main>
+<div v-show="showLogin">
     <img src="../../static/icons/d3ep.png" class="image" />
     <el-row :gutter="10" type="flex">
   <el-col ><el-input class="password" type="password"  auto-complete="off"></el-input></el-col>
@@ -9,18 +11,26 @@
 <el-row :gutter="10" type="flex">
   <el-col ><el-button justify="center" class="btnSubmit" @click="onSubmit">Login</el-button></el-col>
 </el-row>
-  </el-main>
+</div>
+    <el-tabs v-show="!showLogin" v-model="activeTab">
+        <el-tab-pane label="Sharing" name="sharing">
+            <sharing></sharing>
+        </el-tab-pane>
+        <el-tab-pane label="Settings" name="settings">
+            <settings></settings>
+        </el-tab-pane>
+</el-tabs>
+ </el-main>
   <el-footer>
     <h4>Powered by</h4>
   </el-footer>
 </el-container>
-<el-tabs v-show="!showLogin" class=".demo-form-inline">
-    <sharing></sharing>
-</el-tabs>
 </div>
 </template>
 <script>
 import sharing from "./sharing.vue";
+import settings from "./settings.vue";
+
 var forge = require("node-forge");
 var rsa = forge.pki.rsa;
 
@@ -37,11 +47,16 @@ function getWallet() {
   console.log("Generating wallet...");
 }
 
+function getShowLogin() {
+  console.log(localStorage["showLogin"]);
+  return localStorage["showLogin"] == null ? true : localStorage["showLogin"];
+}
+
 export default {
   data() {
     return {
-      showLogin:
-        localStorage["showLogin"] == null ? true : localStorage["showLogin"]
+      showLogin: getShowLogin(),
+      activeTab: "sharing"
     };
   },
   methods: {
@@ -53,15 +68,11 @@ export default {
     },
     tab() {
       chrome.tabs.create({ url: "pages/app.html" });
-    },
-    getShowLogin() {
-      return localStorage["showLogin"] == null
-        ? true
-        : localStorage["showLogin"];
     }
   },
   components: {
-    sharing
+    sharing,
+    settings
   }
 };
 </script>
@@ -94,5 +105,7 @@ export default {
 
 .poweredBy {
   height: 60;
+  bottom: 0;
+  position: fixed;
 }
 </style>

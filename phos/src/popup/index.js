@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import root from './root.vue'
 import ElementUI from 'element-ui'
 import VueRouter from 'vue-router'
 import Login from './login.vue'
@@ -14,7 +13,6 @@ Vue.use(VueRouter)
 const router = new VueRouter({
   mode: 'history',
   routes: [
-    { path: '/', component: root },
     { path: '/login', component: Login },
     { path: '/sharing', component: Sharing }
   ]

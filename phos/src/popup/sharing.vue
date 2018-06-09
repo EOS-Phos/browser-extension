@@ -30,8 +30,16 @@ export default {
 </script>
 
 <style>
-.upload-demo{
-  width: 200px;
-  height: 200px;
+.el-upload {
+  display: block;
+}
+
+.upload-demo {
+  display: block;
+  height: 100%;
+}
+
+.el-upload-dragger {
+  width: 100%;
 }
 </style>
