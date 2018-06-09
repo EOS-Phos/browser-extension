@@ -33,7 +33,6 @@ module.exports = {
   options_page: 'pages/options.html',
   content_scripts: [{
     js: [
-      'js/jquery.min.js',
       'js/manifest.js',
       'js/vendor.js',
       'js/content.js'
