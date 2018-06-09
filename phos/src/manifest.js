@@ -2,7 +2,7 @@
  * @see {@link https://developer.chrome.com/extensions/manifest}
  */
 module.exports = {
-  name: 'phos',
+  name: 'D3EP',
   description: 'Share your media in a free (as freedom) and decentralized way',
   author: 'Brbb <fr.delisi@gmail.com>',
   version: '1.0.0',

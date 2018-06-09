@@ -1,18 +1,8 @@
 <template>
-  <el-container class="demo-form-inline">
-  <el-main>
-    <img src="../../static/icons/eos-logo.png" class="image" />
-    <el-row :gutter="10" type="flex">
-  <el-col :offset="3" ><el-input class="password" type="password" v-model="ruleForm2.pass" auto-complete="off"></el-input></el-col>
-</el-row>
-<el-row :gutter="10" type="flex">
-  <el-col :offset="3" ><el-button justify="center" class="btnSubmit" @click="onSubmit">Login</el-button></el-col>
-</el-row>
-  </el-main>
-  <el-footer>
-    <footer>Powered by</footer>
-  </el-footer>
-</el-container>
+<div>
+ <router-link to="/home">Go to home</router-link>
+    <router-link to="/about">Go to about</router-link>
+    <router-view></router-view></div>
 </template>
 <script>
 var forge = require("node-forge");
