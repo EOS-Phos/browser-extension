@@ -22,7 +22,7 @@
 </el-tabs>
  </el-main>
   <el-footer>
-    <h4>Powered by</h4>
+      <img src="../../static/icons/eosiosg.png" class="poweredBy" />
   </el-footer>
 </el-container>
 </div>
@@ -39,6 +39,9 @@ function getLocalKeyPair() {
     console.log("Generating local keypair...");
     rsa.generateKeyPair({ bits: 2048, workers: 2 }, function(err, keypair) {
       localStorage["publicKey"] = forge.pki.publicKeyToPem(keypair.publicKey);
+      localStorage["privateKey"] = forge.pki.privateKeyToPem(
+        keypair.privateKey
+      );
       console.log("Local keypair generated");
     });
   }
@@ -104,8 +107,9 @@ export default {
 }
 
 .poweredBy {
-  height: 60;
+  height: 50px;
   bottom: 0;
   position: fixed;
+  margin-left: 50px;
 }
 </style>

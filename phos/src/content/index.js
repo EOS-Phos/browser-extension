@@ -1,5 +1,50 @@
 console.log('YO')
-var fakeSourceUrl = 'https://bit.ly/'
+
+var Eos = require('eosjs')
+
+let { ecc } = Eos.modules;
+
+let accountPrivateKey = '5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3';
+let accountName = 'eosio';
+//        let accountName = 'meetonetest1';
+
+// private key to public key
+let accountPublicKey = ecc.privateToPublic(accountPrivateKey);
+console.log(accountPublicKey);
+
+let nodeAddress = 'http://52.77.224.13:8888';
+var config = {
+    keyProvider: accountPrivateKey, // WIF string or array of keys..
+    httpEndpoint: nodeAddress,
+    //    mockTransactions: () => 'pass', // or 'fail'
+    //    transactionHeaders: (expireInSeconds, callback) => {
+    //      callback(null/*error*/, headers)
+    //    },
+    expireInSeconds: 60,
+    broadcast: true,
+    debug: false,
+    sign: true,
+    chainId: 'cf057bbfb72640471fd910bcb67639c22df9f92470936cddc1ade0e2f2e7dc4f'
+};
+
+var eos = Eos(config);
+
+//console.log(eos);
+
+function getSocial() {
+    eos.getTableRows({
+        'json': true,
+        'code': 'socialmedia1',
+        'scope': 'initb1111111',
+        'table': 'accountinfo',
+        'table_key': 'owner'
+    }).then(function (result) {
+        console.log(result);
+    }).catch(err => console.log(err));
+}
+
+
+var fakeSourceUrl = 'http://oi64.tinypic.com/'
 var bHasAccess = false
 var proxy = {
     hasAccess: () => {
@@ -75,7 +120,7 @@ function loadD3EPMedia() {
             var phosCode = phosObject.innerText.split(' ')[0].replace('d33p://', '')
 
             if (checkAccess()) {
-                var url = `${fakeSourceUrl}${phosCode}`;
+                var url = `${fakeSourceUrl}${phosCode}.jpg`;
                 loadImage(phosObject, url)
             }
             else {
@@ -84,6 +129,9 @@ function loadD3EPMedia() {
         }
     }
 }
+
+Promise.all([getSocial()])
+    .catch((err) => console.log(err))
 
 setInterval(() => {
     console.log('Checking for d3ep content...')
