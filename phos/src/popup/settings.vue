@@ -10,7 +10,11 @@
      <el-form-item>
          <el-row :gutter="24">
             <el-col :span="3"><img src="../../static/icons/eos-logo.png" class="twitLogo" /></el-col>
-            <el-col :span="21"><el-input title="EOS6ffwtLDTKQavcpUxFGcTEVxoTztayrdbJ3HK2q3N37Hrmxx8RH" placeholder="Wallet" value="EOS6ffwtLDTKQavcpUxFGcTEVxoTztayrdbJ3HK2q3N37Hrmxx8RH"></el-input></el-col>
+            <el-col :span="21">
+              <div><el-input title="inita1111111" placeholder="EOS Account" value="inita1111111"></el-input>
+              <el-input title="EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV" placeholder="Wallet" value="EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV"></el-input>
+              </div>
+              </el-col>
          </el-row>
      </el-form-item>
      <el-form-item></el-form-item>
